@@ -1,0 +1,76 @@
+[
+    {
+        "Biodata_id": "1",
+        "Biodata_type": "Male",
+        "Profile_img": "https://i.ibb.co/hmTPbW9/Margherita-Pizza-094.jpg",
+       
+        "Division": "Chittagong",
+
+        "Age": "10",
+        "Occupation": "Student"
+        
+    },
+    {
+        "Biodata_id": "2",
+        "Biodata_type": "Male",
+        "Profile_img": "https://i.ibb.co/hmTPbW9/Margherita-Pizza-094.jpg",
+       
+        "Division": "Dhaka",
+
+        "Age": "304",
+        "Occupation": "Job"
+        
+    },
+    {
+        "Biodata_id": "3",
+        "Biodata_type": "Female",
+        "Profile_img": "https://i.ibb.co/hmTPbW9/Margherita-Pizza-094.jpg",
+        "Division": "Barisal",
+        
+        "Age": "50",
+        "Occupation": "House wife"
+    },
+    {
+        "Biodata_id": "4",
+        "Biodata_type": "Female",
+        "Profile_img": "https://i.ibb.co/hmTPbW9/Margherita-Pizza-094.jpg",
+        "Division": "Khulna",
+        
+        "Age": "60",
+        "Occupation": "House wife"
+    },
+    {
+        "Biodata_id": "5",
+        "Biodata_type": "Male",
+        "Profile_img": "https://i.ibb.co/hmTPbW9/Margherita-Pizza-094.jpg",
+        "Division": "Maymensing",
+        "Age": "73",
+        "Occupation": "Student"
+    },
+    {
+        "Biodata_id": "6",
+        "Biodata_type": "Female",
+        "Profile_img": "https://i.ibb.co/hmTPbW9/Margherita-Pizza-094.jpg",
+        "Division": "Sylhet",
+        "Age": "104",
+        "Occupation": "Student"
+    },
+    {
+        "Biodata_id": "7",
+        "Biodata_type": "Male",
+        "Profile_img": "https://i.ibb.co/hmTPbW9/Margherita-Pizza-094.jpg",
+        "Division": "Dhaka",
+        "Age": "304",
+        "Occupation": "Job"
+    },
+    {
+        "Biodata_id": "8",
+        "Biodata_type": "Male",
+        "Profile_img": "https://i.ibb.co/hmTPbW9/Margherita-Pizza-094.jpg",
+        "Division": "Dhaka",
+        "Age": "304",
+        "Occupation": "Job"
+    }
+  
+    
+]
