@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Cart = () => {
+const ViewData = () => {
     return (
         <div>
-            this is cart
+            view port
         </div>
     );
 };
 
-export default Cart;
+export default ViewData;

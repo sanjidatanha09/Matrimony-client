@@ -5,15 +5,17 @@ import { AuthContext } from "../Providers.jsx/AuthProvider";
 
 const Navvar = () => {
 
-    const { user,logOut } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
 
-    const handleLogOut = ( ) =>{
+    const handleLogOut = () => {
         logOut()
-        .then(() => {})
-        .catch(error => console.log(error))
+            .then(() => { })
+            .catch(error => console.log(error))
     }
 
     const navLinks = <>
+
+    
 
         <li className="block font-bold py-2 px-3 text-gray-500 rounded hover:bg-[#66451c] md:hover:bg-transparent md:hover:text-[#66451c] md:p-0 md:dark:hover:text-[#66451c] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
 
@@ -28,11 +30,16 @@ const Navvar = () => {
 
             <NavLink to="/biodata">BioDatas</NavLink></li>
 
-
         <li className="block font-bold py-2 px-3 text-gray-500 rounded hover:bg-[#66451c] md:hover:bg-transparent md:hover:text-[#66451c] md:p-0 md:dark:hover:text-[#66451c] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
 
+            <NavLink to="/detailsBio">Details Bio</NavLink></li>
 
-            <NavLink to="/about">About Us</NavLink></li>
+
+        <li className="block font-bold py-2 px-3 text-gray-500 rounded hover:bg-[#66451c] md:hover:bg-transparent md:hover:text-[#66451c] md:p-0 md:dark:hover:text-[#66451c] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+        <NavLink to="/about">About Us</NavLink></li>
+
+
+        
 
         <li className="block font-bold py-2 px-3 text-gray-500 rounded hover:bg-[#66451c] md:hover:bg-transparent md:hover:text-[#66451c] md:p-0 md:dark:hover:text-[#66451c] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
 
