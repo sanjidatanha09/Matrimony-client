@@ -25,7 +25,7 @@ const GotMarried = () => {
         console.log(newdata);
 
         //send data to the server 
-        fetch('http://localhost:5000/clientstorypost', {
+        fetch('https://assignment12-server-alpha.vercel.app/clientstorypost', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

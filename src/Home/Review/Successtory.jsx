@@ -22,10 +22,12 @@ const Successtory = () => {
         const fetchData = () => {
 
 
-            fetch('http://localhost:5000/clientreview')
+            fetch('https://assignment12-server-alpha.vercel.app/clientreview')
                 .then(res => res.json())
                 .then(json => {
-                    const result = json.sort((a, b) => new Date(a.date) - new Date(b.date))
+                    const result = json.sort((a,b) => new Date(b.
+                        MarriageDate) - new Date(a.
+                            MarriageDate))
                     // console.log(result)
 
 

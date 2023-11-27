@@ -10,15 +10,37 @@ import { AuthContext } from '../../Providers.jsx/AuthProvider';
 import axios from 'axios';
 import AllBio2 from '../DetailsBio/AllBio2';
 
+const itemsPerPages = 3;
 
 const Biodata = () => {
+    // const itemsPerPages =10;
+
+    // const numberOfPages = Math.ceil(Data.length / itemsPerPages);
+
+    // const pages = []
+    // for(let i=0;i<numberOfPages;i++){
+    //     pages.push(i)
+
+    // }
+    // console.log(pages);
   
 
     const [tab, setTab] = useState(0);
- 
 
     const Data = useLoaderData();
-    console.log(Data)
+    const [currentPage, setCurrentPage] = useState(0);
+    const rows = Data.slice(currentPage * itemsPerPages,currentPage +1 *itemsPerPages);
+
+
+
+    const handlePageChange = (pageNumber) =>{
+        setCurrentPage(pageNumber * itemsPerPages, currentPage+1 *itemsPerPages);
+    };
+    
+
+ 
+
+   
 
    
 
@@ -152,10 +174,17 @@ const Biodata = () => {
                             Bios={Bios}
 
                         ></AllBio2>)
+
+                        
                     }
+                   
+
+                    
+
                 </div>
             </div>
 
+            
            
            
                

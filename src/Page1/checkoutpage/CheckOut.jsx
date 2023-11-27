@@ -25,7 +25,7 @@ const CheckOut = () => {
         console.log(newdata);
 
         //send data to the server 
-        fetch('http://localhost:5000/postpayment', {
+        fetch('https://assignment12-server-alpha.vercel.app/postpayment', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

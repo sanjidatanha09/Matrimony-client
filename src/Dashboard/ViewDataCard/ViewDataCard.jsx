@@ -28,7 +28,7 @@ const ViewDataCard = ({ Bios }) => {
 
 
             }
-            axios.post('http://localhost:5000/postpremium', profiledetails)
+            axios.post('https://assignment12-server-alpha.vercel.app/postpremium', profiledetails)
                 .then(res => {
                     console.log(res.data)
                     Swal.fire({

@@ -13,7 +13,7 @@ const PremiumProfile = () => {
         const fetchData = () => {
 
 
-            fetch('http://localhost:5000/datas')
+            fetch('https://assignment12-server-alpha.vercel.app/datas')
                 .then(res => res.json())
                 .then(json => {
                     const result = json.sort((a, b) => b.Age - a.Age)

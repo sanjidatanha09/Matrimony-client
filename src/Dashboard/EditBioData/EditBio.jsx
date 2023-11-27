@@ -1,10 +1,89 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Providers.jsx/AuthProvider';
+import Select from 'react-select';
+
+const options1 = [
+    { value: 'Male', label: 'Male' },
+    { value: 'Female', label: 'Female' },
+    
+];
+const options2 = [
+    { value: '7', label: '7' },
+    { value: '6', label: '6' },
+    { value: '5', label: '5' },
+    { value: '4', label: '4' },
+
+];
+const options3 = [
+    { value: '50', label: '50' },
+    { value: '60', label: '60' },
+    { value: '70', label: '70' },
+    { value: '55', label: '55' },
+
+];
+const Occupation = [
+    { value: 'JOb', label: 'Job' },
+    { value: 'Student', label: 'Student' },
+    { value: 'House Wife', label: 'House Wife' },
+    
+
+];
+const Race = [
+    { value: '10', label: '10' },
+    { value: '11', label: '11' },
+    { value: '12', label: '12' },
+    { value: '13', label: '13' },
+
+
+];
+const PresentDivision = [
+    { value: 'Dhaka', label: 'Dhaka' },
+    { value: 'Chittagong', label: 'Chittagong' },
+    { value: 'Rangpur', label: 'Rangpur' },
+    { value: 'Barisal', label: 'Barisal' },
+    { value: 'Khulna', label: 'Khulna' }, 
+    { value: 'Sylhet]', label: 'Sylhet]' },
+    { value: 'Maymansign', label: 'Maymansign' }, 
+
+
+];
+const PermanentDivision = [
+    { value: 'Dhaka', label: 'Dhaka' },
+    { value: 'Chittagong', label: 'Chittagong' },
+    { value: 'Rangpur', label: 'Rangpur' },
+    { value: 'Barisal', label: 'Barisal' },
+    { value: 'Khulna', label: 'Khulna' },
+    { value: 'Sylhet]', label: 'Sylhet]' },
+    { value: 'Maymansign', label: 'Maymansign' },
+
+
+
+];
+const Partnetheight = [
+    { value: '7', label: '7' },
+    { value: '6', label: '6' },
+    { value: '5', label: '5' },
+    { value: '4', label: '4' },
+
+];
+const partnerWeight= [
+    { value: '50', label: '50' },
+    { value: '60', label: '60' },
+    { value: '70', label: '70' },
+    { value: '55', label: '55' },
+
+];
+
+
 
 const EditBio = () => {
     const { user } = useContext(AuthContext); 
+
+    
+
+    const [selectedOption, setSelectedOption] = useState(null);
 
     const handleAddBio = event => {
         event.preventDefault();
@@ -43,7 +122,7 @@ const EditBio = () => {
         console.log(newdata);
 
         //send data to the server 
-        fetch('http://localhost:5000/postdatas', {
+        fetch('https://assignment12-server-alpha.vercel.app/postdatas', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -67,7 +146,13 @@ const EditBio = () => {
     }
     return (
         <div>
+           
+
+            
             <div className="my-10  w-full mx-auto max-w-xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+
+               
+         
                 <form onSubmit={handleAddBio} className="space-y-6" action="#">
                     <h5 className="text-xl text-center font-medium text-gray-500 dark:text-white">
                         Add BioData
@@ -75,12 +160,15 @@ const EditBio = () => {
                     <div>
                         <div className='flex gap-2'>
                             <div className='w-1/2'>
+
+                                
                                 <label
                                     htmlFor="email"
                                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                 >
                                     Biodata Name
                                 </label>
+                               
                                 <input
                                     type="text"
                                     name="Biodata_name"
@@ -97,13 +185,12 @@ const EditBio = () => {
                                 >
                                     Biodata type
                                 </label>
-                                <input
-                                    type="text"
+                                <Select
+                                    defaultValue={selectedOption}
+                                    onChange={setSelectedOption}
+                                    options={options1}
                                     name="Biodata_type"
-                                    id="Biodata_type"
-                                    placeholder="Biodata_type"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    required
+
                                 />
                             </div>
                         </div>
@@ -131,13 +218,12 @@ const EditBio = () => {
                                 >
                                     Parmanent Division
                                 </label>
-                                <input
-                                    type="text"
+                                <Select
+                                    defaultValue={selectedOption}
+                                    onChange={setSelectedOption}
+                                    options={PermanentDivision}
                                     name="Division"
-                                    id="Parmanent_Division"
-                                    placeholder="Division"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    required
+
                                 />
                             </div>
                         </div>
@@ -165,13 +251,12 @@ const EditBio = () => {
                                 >
                                     Occupation
                                 </label>
-                                <input
-                                    type="text"
+                                <Select
+                                    defaultValue={selectedOption}
+                                    onChange={setSelectedOption}
+                                    options={Occupation}
                                     name="Occupation"
-                                    id="Occupation"
-                                    placeholder="Occupation"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    required
+
                                 />
                             </div>
                         </div>
@@ -183,14 +268,14 @@ const EditBio = () => {
                                 >
                                     Height
                                 </label>
-                                <input
-                                    type="text"
+                                <Select
+                                    defaultValue={selectedOption}
+                                    onChange={setSelectedOption}
+                                    options={options2}
                                     name="Height"
-                                    id="height "
-                                    placeholder="Height"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    required
+
                                 />
+                               
                             </div>
                             <div className='w-1/2'>
                                 <label
@@ -217,14 +302,14 @@ const EditBio = () => {
                                 >
                                     Weight
                                 </label>
-                                <input
-                                    type="text"
+                                <Select
+                                    defaultValue={selectedOption}
+                                    onChange={setSelectedOption}
+                                    options={options3}
                                     name="Weight"
-                                    id="Weight "
-                                    placeholder="Weight"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    required
+
                                 />
+                                
                             </div>
                             <div className='w-1/2'>
                                 <label
@@ -233,13 +318,12 @@ const EditBio = () => {
                                 >
                                     Race
                                 </label>
-                                <input
-                                    type="text"
+                                <Select
+                                    defaultValue={selectedOption}
+                                    onChange={setSelectedOption}
+                                    options={Race}
                                     name="Race"
-                                    id="Race"
-                                    placeholder="Race"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    required=""
+
                                 />
                             </div>
                         </div>
@@ -285,13 +369,13 @@ const EditBio = () => {
                                 >
                                    Present Division
                                 </label>
-                                <input
-                                    type="text"
+                                
+                                <Select
+                                    defaultValue={selectedOption}
+                                    onChange={setSelectedOption}
+                                    options={PresentDivision}
                                     name="PDivision"
-                                    id="PDivision "
-                                    placeholder="PDivision"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    required
+
                                 />
                             </div>
                             <div className='w-1/2'>
@@ -319,14 +403,13 @@ const EditBio = () => {
                                 >
                                     Expected partner Height
                                 </label>
-                                <input
-                                    type="text"
+                                <Select
+                                    defaultValue={selectedOption}
+                                    onChange={setSelectedOption}
+                                    options={Partnetheight}
                                     name="Partner_height"
-                                    id="Partner_height "
-                                    placeholder="Partner_height"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    required
-                                />
+
+                                />  
                             </div>
                             <div className='w-1/2'>
                                 <label
@@ -335,13 +418,12 @@ const EditBio = () => {
                                 >
                                     Expected partner weight
                                 </label>
-                                <input
-                                    type="text"
+                                <Select
+                                    defaultValue={selectedOption}
+                                    onChange={setSelectedOption}
+                                    options={partnerWeight}
                                     name="Partner_weight"
-                                    id="partner weight"
-                                    placeholder="partner weight"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    required
+
                                 />
                             </div>
                         </div>

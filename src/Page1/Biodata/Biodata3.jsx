@@ -33,7 +33,7 @@ const Biodata3 = ({ tabbs }) => {
 
 
     //         }
-    //         axios.post('http://localhost:5000/profiledetails',profiledetails)
+    //         axios.post('https://assignment12-server-alpha.vercel.app/profiledetails',profiledetails)
     //         .then(res =>{
     //             console.log(res.data)
     //             Swal.fire({

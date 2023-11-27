@@ -52,12 +52,12 @@ const router = createBrowserRouter([
       {
         path: '/biodata',
         element: <Biodata></Biodata>,
-        loader: () => fetch('http://localhost:5000/datas')
+        loader: () => fetch('https://assignment12-server-alpha.vercel.app/datas')
       },
       {
         path: '/detailsBio',
         element: <DetailsBio></DetailsBio>,
-        loader: () => fetch('http://localhost:5000/datas')
+        loader: () => fetch('https://assignment12-server-alpha.vercel.app/datas')
       }
       ,
       {
@@ -76,7 +76,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/contact',
-        element: <PrivateRoute><Contact></Contact></PrivateRoute>,
+        element: <Contact></Contact>,
       },
       {
         path: '/register',
@@ -105,7 +105,7 @@ const router = createBrowserRouter([
       {
         path: 'favbio',
         element: <Favourite></Favourite>,
-        loader: () => fetch('http://localhost:5000/favget')
+        loader: () => fetch('https://assignment12-server-alpha.vercel.app/favget')
 
       },
      
@@ -145,7 +145,7 @@ const router = createBrowserRouter([
       {
         path: 'clientreview/:id',
         element: <StoryView2></StoryView2>,
-        loader: ({ params }) => fetch(`http://localhost:5000/clientreview/${params.id}`)
+        loader: ({ params }) => fetch(`https://assignment12-server-alpha.vercel.app/clientreview/${params.id}`)
 
       },
       

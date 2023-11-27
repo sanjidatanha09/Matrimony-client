@@ -6,17 +6,20 @@ import axios from 'axios';
 import useDetails from '../../hook/useDetails';
 
 const AllBio = ({ Bios }) => {
-    const { Biodata_name, Biodata_type, Profile_img, Division, Age, Occupation, Height, Date, Weight, Race, Fname, Mname, PDivision, Partner_age, Partner_height, Partner_weight, MNumber, email, _id } = Bios;
+    const { Biodata_name, Biodata_type, Profile_img, Division, Age, Occupation, Height, Date, Weight, Race, Fname, Mname, PDivision, Partner_age, Partner_height, Partner_weight, MNumber, email, _id,BioId } = Bios;
     console.log(Bios)
     
 
 
     
     return (
-        <div>
-            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className=''>
+            <div className="max-w-sm mb-5 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <div className='flex m-5 items-center justify-between'>
-                    <h1 className='font-bold text-2xl text-gray-500'>{Biodata_name}</h1>
+                    <div>
+                        <h1 className='text-center font-bold text-xl text-gray-500'>{BioId}</h1>
+                        <h1 className='font-bold text-2xl text-gray-500'>{Biodata_name}</h1>
+                    </div>
                     <a href="#">
                         <img className="rounded-lg h-[100px] w-[120px]" src={Profile_img} alt="" />
                     </a>
@@ -105,6 +108,9 @@ const AllBio = ({ Bios }) => {
                    </div>
                 </div>
             </div>
+
+
+       
 
         </div>
    

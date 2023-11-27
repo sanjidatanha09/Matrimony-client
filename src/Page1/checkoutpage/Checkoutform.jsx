@@ -72,7 +72,7 @@ const Checkoutform = () => {
         // if(!error){
         //     try{
         //         const {id} = paymentMethod
-        //         const response = await axios.post('http://localhost:5000/create-payment-intent',{
+        //         const response = await axios.post('https://assignment12-server-alpha.vercel.app/create-payment-intent',{
         //             amount:1000,
         //             id
         //         })
