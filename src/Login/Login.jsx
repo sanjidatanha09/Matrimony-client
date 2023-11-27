@@ -5,12 +5,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaBeer, FaRegEyeSlash, FaEye } from 'react-icons/fa';
 import { FaGithub, FaGofore } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
+import useAxiosPublic from '../hook/useAxiosPublic';
 
 const Login = () => {
 
 
     const navigate = useNavigate();
     const location = useLocation();
+    const axsiosPublic = useAxiosPublic();
 
     const from = location.state?.from?.pathname || '/'
 
@@ -20,7 +22,17 @@ const Login = () => {
         googleSignIn().then(result => {
             console.log(result.user)
             toast('user login successfully');
-            navigate(from, { replace: true });
+            const userInfo = {
+                email: result.user?.email,
+                name: result.user?.displayName
+
+            }
+            
+            axsiosPublic.post('/users',userInfo)
+            .then(res =>{
+                console.log(res.data);
+                navigate(from, { replace: true });
+            })
             
         });
     };

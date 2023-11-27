@@ -13,16 +13,38 @@ import '@smastrom/react-rating/style.css'
 
 
 const Successtory = () => {
+    
 
     const [reviews, setReview] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/clientreview')
-            .then(res => res.json())
-            .then(data => setReview(data))
-    }, [])
 
-    console.log(reviews)
+        const fetchData = () => {
+
+
+            fetch('http://localhost:5000/clientreview')
+                .then(res => res.json())
+                .then(json => {
+                    const result = json.sort((a, b) => new Date(a.date) - new Date(b.date))
+                    // console.log(result)
+
+
+                    setReview(result);
+
+                })
+
+                .catch(e => {
+                    console.log('error', e)
+                })
+
+
+        }
+        fetchData();
+
+
+    }, []);
+
+   
 
 
     return (
@@ -42,26 +64,26 @@ const Successtory = () => {
                 modules={[Pagination, Navigation]}
                 className="mySwiper w-full lg:w-[900px] "
             >
-
+                
                 
                 {
                     reviews.map(review => <SwiperSlide key={review._id}>
 
 
                         <div>
-                            <img className='w-full lg:w-[650px] mx-auto rounded-xl h-[250px]' src={review.Profile_img} alt="" />
+                            <img className='w-full lg:w-[500px] mx-auto rounded-xl h-[300px]' src={review.Couple_img} alt="" />
 
                             <div className='text-center mb-16'> 
-                                <div className='flex flex-col lg:flex-row justify-center items-center lg:gap-72 my-6 '>
+                                <div className='flex flex-col lg:flex-row justify-center items-center lg:gap-48 my-6 '>
         
                                     <Rating
                                        style={{maxWidth: 180}}
                                        value = {review.Star}
                                        readOnly
                                     />
-                                    <p className='font-bold text-2xl text-gray-700'>{review.Date}</p>
+                                    <p className='font-bold text-2xl text-gray-700'>{review.MarriageDate}</p>
                                 </div>
-                                <p className='text-gray-500'>{review.Story}</p>
+                                <p className='text-gray-500 lg:w-[550px] mx-auto'>{review.textfield}</p>
 
                             </div>
                            

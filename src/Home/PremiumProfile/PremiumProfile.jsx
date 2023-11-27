@@ -7,7 +7,7 @@ import PremiumCard from './PremiumCard';
 const PremiumProfile = () => {
 
     const [weedings, setweeding] = useState([]);
-
+    const premiums = weedings.filter(tabbs => tabbs.action === 'premium')
     useEffect(() => {
 
         const fetchData = () => {
@@ -45,7 +45,7 @@ const PremiumProfile = () => {
             </div>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
-                    weedings.map(weeding => <PremiumCard
+                    premiums.map(weeding => <PremiumCard
                         key={weeding.Biodata_id}
                         weeding={weeding}
 

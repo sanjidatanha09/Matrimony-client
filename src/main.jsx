@@ -26,6 +26,15 @@ import Dashborad from './Dashboard/Dashborad';
 
 import ViewData from './Dashboard/ViewData';
 import DetailsBio from './Page1/DetailsBio';
+import EditBio from './Dashboard/EditBioData/EditBio';
+import Favourite from './Dashboard/Favourite/Favourite';
+import ManageUsers from './Dashboard/Manageuser/ManageUsers';
+import Premium from './Dashboard/ApprovedPremium/Premium';
+import AcRequest from './Dashboard/ACRequest/AcRequest';
+import CheckOut from './Page1/checkoutpage/CheckOut';
+import GotMarried from './Dashboard/GotMarried/GotMarried';
+import StoryView from './Dashboard/StoryView/StoryView';
+import StoryView2 from './Dashboard/StoryView/StoryView2';
 
 
 const queryClient = new QueryClient();
@@ -48,7 +57,14 @@ const router = createBrowserRouter([
       {
         path: '/detailsBio',
         element: <DetailsBio></DetailsBio>,
+        loader: () => fetch('http://localhost:5000/datas')
+      }
+      ,
+      {
+        path: '/checkout',
+        element: <CheckOut></CheckOut>,
       },
+
       
       {
         path: '/login',
@@ -65,7 +81,7 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Registration></Registration>,
-      },
+      }
 
     ]
 
@@ -79,7 +95,61 @@ const router = createBrowserRouter([
       {
         path: 'viewbio',
         element: <ViewData></ViewData>,
+        
       },
+      {
+        path: 'editbio',
+        element: <EditBio></EditBio>,
+       
+      },
+      {
+        path: 'favbio',
+        element: <Favourite></Favourite>,
+        loader: () => fetch('http://localhost:5000/favget')
+
+      },
+     
+      {
+        path: 'editbio',
+        element: <EditBio></EditBio>,
+
+      },
+      {
+        path: 'married',
+        element: <GotMarried></GotMarried>,
+
+      },
+
+      //admin routes
+      {
+        path: 'manageuser',
+        element: <ManageUsers></ManageUsers>,
+
+      },
+      {
+        path: 'approvedpremium',
+        element: <Premium></Premium>,
+
+      },
+      {
+        path: 'approvedcontactrequest',
+        element: <AcRequest></AcRequest>,
+
+      },
+      {
+        path: 'story',
+        element: <StoryView></StoryView>
+
+      }, 
+
+      {
+        path: 'clientreview/:id',
+        element: <StoryView2></StoryView2>,
+        loader: ({ params }) => fetch(`http://localhost:5000/clientreview/${params.id}`)
+
+      },
+      
+
 
 
 

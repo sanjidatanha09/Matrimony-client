@@ -8,14 +8,16 @@ import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../Providers.jsx/AuthProvider';
 import { Result } from 'postcss';
+import useAxiosPublic from '../hook/useAxiosPublic';
 
 
 
 
 const Registration = () => {
+    const axsiosPublic = useAxiosPublic()
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const navigate = useNavigate()
+    const from = location.state?.from?.pathname || '/'
 
     const { createUser, updateUserProfile } = useContext(AuthContext);
 
@@ -27,43 +29,42 @@ const Registration = () => {
                 console.log(loggedUser);
                 updateUserProfile(data.displayName, data.photoURL)
                     .then(() => {
-                        //creats user entry in the database
-                        // const userInfo = {
-                        //     name: data.displayName,
-                        //     email: data.email
+                        // creats user entry in the database
 
-                        // }
 
                         console.log('user profile update')
                         reset()
+                        Swal.fire({
+                            title: "Good job!",
+                            text: "You clicked the button!",
+                            icon: "success"
+                        });
+
+
+
+                    })
+                    .catch(error => console.log(error))
+
+                const userInfo = {
+                    name: data.displayName,
+                    email: data.email
+
+                }
+                axsiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            console.log('user added to the database')
+                            reset();
                             Swal.fire({
                                 title: "Good job!",
                                 text: "You clicked the button!",
                                 icon: "success"
                             });
 
-                        // axiospublic.post('/users', userInfo)
-                        //     .then(res => {
-                        //         if (res.data.insertedId) {
-                        //             console.log('user added to the database')
-                        //             reset();
-                        //             Swal.fire({
-                        //                 title: "Good job!",
-                        //                 text: "You clicked the button!",
-                        //                 icon: "success"
-                        //             });
+                            navigate(from, { replace: true });
 
-                        //         }
-                        //     })
-
-
-
-
-
-                        navigate('/');
-
+                        }
                     })
-                    .catch(error => console.log(error))
 
             })
     };

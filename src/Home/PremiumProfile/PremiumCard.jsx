@@ -3,49 +3,72 @@ import { Link } from 'react-router-dom';
 
 const PremiumCard = ({weeding}) => {
 
-    const { Biodata_id, Biodata_type, Age, Profile_img, Occupation, Division } = weeding;
+    const { BioId, Biodata_type, Age, Profile_img, Occupation, Division, Biodata_name } = weeding;
+   
     return (
         <div>
            
-            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                    <img className="rounded-t-lg" src="https://i.ibb.co/9WRjMJP/Manor-By-The-Lake-Asian-Wedding-Photography-31.jpg" alt="" />
-                </a>
-                <div className="p-5">
-                    <a href="#">
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                           {Biodata_id}
-                        </h5>
-                    </a>
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        Here are the biggest enterprise technology acquisitions of 2021 so far, in
-                        reverse chronological order.
-                    </p>
-                    <Link>
-                        <a
-                            href="#"
-                            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        >
-                            View Profile
-                            <svg
-                                className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 14 10"
-                            >
-                                <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M1 5h12m0 0L9 1m4 4L9 9"
-                                />
-                            </svg>
-                        </a>
-                    </Link>
+            <div>
+                <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                    
+                    <div className='flex m-5 items-center justify-between'>
+                        
+                        <div >
+                            <h1 className='font-bold text-2xl text-gray-500'>{BioId}</h1>
+                            <h1 className='font-bold text-2xl text-gray-500'>{Biodata_name}</h1>
+
+                            
+                        </div>
+                        <a href="#">
+                            <img className="rounded-lg h-[100px] w-[120px]" src={Profile_img} alt="" />
+                        </a>
+
+
+                    </div>
+                    <hr className='' />
+                    <div className="p-5  ">
+
+
+                        <h1 className='font-bold text-gray-700 text-sm'>Gender: {Biodata_type}</h1>
+                        
+                       
+                        <h1 className='font-bold text-gray-700 text-sm'>Age: {Age}</h1>
+                        <p className='font-bold text-gray-700 text-sm'>Occupation:{Occupation}</p>
+    
+
+
+                        <h1 className='font-bold text-gray-700 text-sm'>Permanent Division : {Division}</h1>
+
+
+                        
+                        
+
+                       <Link to='/biodata'>
+                            <button
+
+                                className="mt-5 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#66451c] rounded-lg hover:bg-[#917757] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            >
+                                Premium Profile
+                                <svg
+                                    className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 14 10"
+                                >
+                                    <path
+                                        stroke="currentColor"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M1 5h12m0 0L9 1m4 4L9 9"
+                                    />
+                                </svg>
+                            </button>
+                       </Link>
+                    </div>
                 </div>
+
             </div>
         </div>
     );

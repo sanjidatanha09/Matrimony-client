@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { createContext } from 'react';
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import auth from '../firebase/firebase.config';
+import useAxiosPublic from '../hook/useAxiosPublic';
 
 
 
@@ -12,6 +13,7 @@ export const AuthContext = createContext(null);
 
 
 const AuthProvider = ({ children }) => {
+    const axsiosPublic = useAxiosPublic();
 
    
 
@@ -64,23 +66,23 @@ const AuthProvider = ({ children }) => {
             setLoading(false);
             
 
-            // if (currentUser) {
-            //     //get token and store client
-            //     const userInfo = { email: currentUser.email };
-            //     axiospublic.post('/jwt', userInfo)
-            //         .then(res => {
-            //             if (res.data.token) {
-            //                 localStorage.setItem('access-token', res.data.token);
-            //                 setLoading(false);
-            //             }
-            //         })
+            if (currentUser) {
+                //get token and store client
+                const userInfo = { email: currentUser.email };
+                axsiosPublic.post('/jwt', userInfo)
+                    .then(res => {
+                        if (res.data.token) {
+                            localStorage.setItem('access-token', res.data.token);
+                            setLoading(false);
+                        }
+                    })
 
-            // }
-            // else {
-            //     localStorage.removeItem('access-token');
-            //     setLoading(false);
+            }
+            else {
+                localStorage.removeItem('access-token');
+                setLoading(false);
 
-            // }
+            }
 
         });
 
@@ -88,7 +90,7 @@ const AuthProvider = ({ children }) => {
             return unsubscribe();
         }
 
-    }, [])
+    }, [axsiosPublic])
 
     const userInfo = {
         googleSignIn,
