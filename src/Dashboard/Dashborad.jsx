@@ -38,7 +38,7 @@ const Dashborad = () => {
                                 className=' p-2  rounded-xl mb-2  bg-[#2c1c08]'><NavLink to='/dashboard/story'>Success Story</NavLink></li>
                             
                             <li
-                             className=' p-2  rounded-xl mb-2  bg-[#2c1c08]'><NavLink to='/dashboard/logout'>LogOut</NavLink></li>
+                             className=' p-2  rounded-xl mb-2  bg-[#2c1c08]'><NavLink to='/'>LogOut</NavLink></li>
 
 
                             <hr className='my-10 ' />
@@ -63,7 +63,7 @@ const Dashborad = () => {
                                 <li className='  p-2   rounded-xl mb-2  bg-[#2c1c08]'><NavLink to='/dashboard/married'>Got Married</NavLink></li>
 
 
-                                <li className='  p-2   rounded-xl mb-2  bg-[#2c1c08]'><NavLink to='/dashboard/logout'>LogOut</NavLink></li>
+                                <li className='  p-2   rounded-xl mb-2  bg-[#2c1c08]'><NavLink to='/'>LogOut</NavLink></li>
 
 
                                 <hr className='my-10 ' />
