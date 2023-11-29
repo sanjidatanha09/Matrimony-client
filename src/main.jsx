@@ -35,6 +35,8 @@ import CheckOut from './Page1/checkoutpage/CheckOut';
 import GotMarried from './Dashboard/GotMarried/GotMarried';
 import StoryView from './Dashboard/StoryView/StoryView';
 import StoryView2 from './Dashboard/StoryView/StoryView2';
+import MycontactRequ from './Dashboard/MyContactRequ/MycontactRequ';
+import AdminHome from './Dashboard/Adminhome/AdminHome';
 
 
 const queryClient = new QueryClient();
@@ -61,8 +63,9 @@ const router = createBrowserRouter([
       }
       ,
       {
-        path: '/checkout',
+        path: '/checkout/:id',
         element: <CheckOut></CheckOut>,
+        loader: ({ params }) => fetch(`https://assignment12-server-alpha.vercel.app/checkout/${params.id}`)
       },
 
       
@@ -108,12 +111,12 @@ const router = createBrowserRouter([
         loader: () => fetch('https://assignment12-server-alpha.vercel.app/favget')
 
       },
-     
       {
-        path: 'editbio',
-        element: <EditBio></EditBio>,
+        path: 'mycontactrequest',
+        element: <MycontactRequ></MycontactRequ>,
 
       },
+     
       {
         path: 'married',
         element: <GotMarried></GotMarried>,
@@ -121,6 +124,11 @@ const router = createBrowserRouter([
       },
 
       //admin routes
+      {
+        path: 'adminhome',
+        element: <AdminHome></AdminHome>,
+
+      },
       {
         path: 'manageuser',
         element: <ManageUsers></ManageUsers>,

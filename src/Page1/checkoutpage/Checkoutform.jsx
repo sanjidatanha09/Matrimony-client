@@ -2,41 +2,44 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers.jsx/AuthProvider";
 import useAxiosSecure from "../../hook/useAxiosSecure";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import useCart from "../../hook/useCart";
+import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const Checkoutform = () => {
+    const check = useLoaderData()
+    const [checks]= useState(check);
+    // console.log(checks)
+    const [transactionId, setTransactionId] = useState(' ');
+  
     const axiosSecure = useAxiosSecure();
     const stripe = useStripe();
     const elements = useElements();
     const [error, setError] = useState('');
     const { user } = useContext(AuthContext)
+
     const [clientSecret, setClientSecret] = useState('');
-    const [cart,refetch] = useCart();
-    const totalPrice = cart.reduce((total, item) => total + item.price, 0);
-    console.log(totalPrice)
+    const totalPrice = 500
+    // console.log(totalPrice)
+
+
+
+    
   
-  
-
-
-
-
-   
 
     useEffect(() => {
-        // if (totalPrice > 0) {
-        axiosSecure.post('/create-payment-intent')
+        if (totalPrice > 0) {
+            axiosSecure.post('/create-payment-intent', {addfee :totalPrice})
             .then(res => {
-                console.log(res.data.clientSecret);
+                // console.log(res.data.clientSecret);
                 setClientSecret(res.data.clientSecret);
             })
-        // }
+        }
 
 
 
-    }, [axiosSecure])
+    }, [axiosSecure,totalPrice])
   
 
 
@@ -68,30 +71,57 @@ const Checkoutform = () => {
             setError('');
         }
 
-        //you tube
-        // if(!error){
-        //     try{
-        //         const {id} = paymentMethod
-        //         const response = await axios.post('https://assignment12-server-alpha.vercel.app/create-payment-intent',{
-        //             amount:1000,
-        //             id
-        //         })
-        //         if(response.data.success){
-        //             console.log('success payment ')
-        //             setSuccess(true)
-        //         }
+        //confirm payment 
+        const {paymentIntent,error:confirmError} = await stripe.confirmCardPayment(clientSecret,{
+            payment_method:{
+                card:card,
+                billing_details:{
+                    email:user?.email || 'anonymous',
+                    name: user?.displayName || 'anonymous',
+
+                }
+            }
+        })
+
+        if(confirmError){
+            console.log('confirm error')
+        }
+        else{
+            console.log('payment intent', paymentIntent)
+
+            if(paymentIntent.status === 'succeeded'){
+                console.log('transaction id',paymentIntent.id);
+                setTransactionId(paymentIntent.id)
+
+                //now save the payment 
+                const payment = {
+                    email:user?.email,
+                  transactionId:paymentIntent.id,
+                    name:checks?.Biodata_name,
+                    mobile: checks?.MNumber,
+                    addfee: totalPrice,
+                    date:new Date(), //utc date convert
+                    cartId: checks?._id,
+                    menuItemId: checks?.BioId,
+                    status:'Pending'
+                }
+
+                const res =await axiosSecure.post('/payments',payment);
+                console.log('payment save',res.data);
+                if (res.data?.paymentResult?.insertedId){
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "successfully payment!",
+                        icon: "success"
+                    });
+                    navigate('/dashboard/mycontactrequest')
+                }
+            }
+        }
 
 
 
-        //     }catch (error){
-        //         console.log(error.message)
-
-        //     }
-        // }
-        // else{
-        //     console.log('error',error)
-        // }
-//end youtube
+        
 
         
 
@@ -118,69 +148,13 @@ const Checkoutform = () => {
 
 
                 ></CardElement>
-                <div className=" mt-5">
-                    <div className='w-full'>
-                        <label
-                            htmlFor="email"
-                            className="block mb-2 text-sm font-medium text-gray-500 dark:text-white"
-                        >
-                            Email
-                        </label>
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            defaultValue={user?.email}
-                            disabled
-                            placeholder="Email"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                            required=""
-                        />
-                    </div>
-                   
-
-                </div>
+              
                
                 
-                <div className='flex gap-2 mt-5'>
-                    <div className='w-1/2'>
-                        <label
-                            htmlFor="email"
-                            className="block mb-2 text-sm font-medium text-gray-500 dark:text-white"
-                        >
-                            Biodata Id
-                        </label>
-                        <input
-                            type="number"
-                            name="Biodata_id"
-                            id="Biodata_id"
-                            placeholder="Biodata_id"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                            required=""
-                        />
-                    </div>
-
-                    <div className='w-1/2'>
-                        <label
-                            htmlFor="password"
-                            className="block mb-2 text-sm font-medium text-gray-500 dark:text-white"
-                        >
-                            Self BioData Id
-                        </label>
-                        <input
-                            type="number"
-                            name="selfbioid"
-                            id="selfbioid"
-                           
-                            placeholder="self bio id"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                            required=""
-                        />
-                    </div>
-                </div>
+              
 
 
-                <button className="text-white bg-[#66451c]  hover:bg-[#b49875] rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 font-bold  text-sm px-5 py-2.5 text-center me-2 mb-2  mt-5" type="submit" disabled={!stripe}>Submit</button>
+                <button className="text-white bg-[#66451c]  hover:bg-[#b49875] rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 font-bold  text-sm px-5 py-2.5 text-center me-2 mb-2  mt-5" type="submit" disabled={!stripe || !clientSecret}>Submit</button>
 
 
                 
@@ -188,6 +162,8 @@ const Checkoutform = () => {
                 <p className="text-lg text-red-500">
                     {error}
                 </p>
+
+                {transactionId && <p className="text-green-600">your transactionId : {transactionId}</p>}
 
                 
 

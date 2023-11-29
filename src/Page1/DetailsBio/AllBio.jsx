@@ -125,7 +125,7 @@ const AllBio = ({ Bios }) => {
                             <p className='font-bold text-gray-700 text-sm'>Mobile Number: {MNumber}</p>
                         </>:
                         <>
-                              <Link to='/checkout'>
+                                <Link to={`/checkout/${_id}`}>
                                     <button
 
 

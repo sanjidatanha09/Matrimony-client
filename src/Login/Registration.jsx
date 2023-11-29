@@ -34,11 +34,11 @@ const Registration = () => {
 
                         console.log('user profile update')
                         reset()
-                        Swal.fire({
-                            title: "Good job!",
-                            text: "You clicked the button!",
-                            icon: "success"
-                        });
+                        // Swal.fire({
+                        //     title: "Good job!",
+                        //     text: "You clicked the button!",
+                        //     icon: "success"
+                        // });
 
 
 

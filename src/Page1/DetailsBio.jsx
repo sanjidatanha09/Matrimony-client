@@ -53,7 +53,9 @@ const DetailsBio = () => {
            </div>
            <div className='lg:w-1/2 pl-5 border-l-2 '>
                 <h2 className='text-xl font-bold text-gray-500 text-center mb-5'>Biodata :{details.length}</h2>
+                
                 <div className='lg:w-[400px] mx-auto'>
+                    
                     {
                         details.map(Bios => <AllBio
                             key={Bios.Biodata_id}

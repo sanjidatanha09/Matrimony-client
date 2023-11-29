@@ -4,6 +4,7 @@ import { createContext } from 'react';
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import auth from '../firebase/firebase.config';
 import useAxiosPublic from '../hook/useAxiosPublic';
+import { axiosSecure } from '../hook/useAxiosSecure';
 
 
 
@@ -69,7 +70,7 @@ const AuthProvider = ({ children }) => {
             if (currentUser) {
                 //get token and store client
                 const userInfo = { email: currentUser.email };
-                axsiosPublic.post('/jwt', userInfo)
+                axiosSecure.post('/jwt', userInfo)
                     .then(res => {
                         if (res.data.token) {
                             localStorage.setItem('access-token', res.data.token);
@@ -90,7 +91,7 @@ const AuthProvider = ({ children }) => {
             return unsubscribe();
         }
 
-    }, [axsiosPublic])
+    }, [axiosSecure])
 
     const userInfo = {
         googleSignIn,

@@ -58,7 +58,7 @@ const Dashborad = () => {
 
                                 <li className='  p-2   rounded-xl mb-2  bg-[#2c1c08]'><NavLink to='/dashboard/viewbio'>View Biodata</NavLink></li>
 
-                                <li className='  p-2   rounded-xl mb-2  bg-[#2c1c08]'><NavLink to='/dashboard/contactrequest'>My Contact Request</NavLink></li>
+                                <li className='  p-2   rounded-xl mb-2  bg-[#2c1c08]'><NavLink to='/dashboard/mycontactrequest'>My Contact Request</NavLink></li>
                                 <li className='  p-2   rounded-xl mb-2  bg-[#2c1c08]'><NavLink to='/dashboard/favbio'>Favourites Biodata</NavLink></li>
                                 <li className='  p-2   rounded-xl mb-2  bg-[#2c1c08]'><NavLink to='/dashboard/married'>Got Married</NavLink></li>
 

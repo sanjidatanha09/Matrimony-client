@@ -6,6 +6,7 @@ import { FaBeer, FaRegEyeSlash, FaEye } from 'react-icons/fa';
 import { FaGithub, FaGofore } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import useAxiosPublic from '../hook/useAxiosPublic';
+import useAxiosSecure from '../hook/useAxiosSecure';
 
 const Login = () => {
 
@@ -13,6 +14,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const axsiosPublic = useAxiosPublic();
+    const axiosSecure =useAxiosSecure()
 
     const from = location.state?.from?.pathname || '/'
 
@@ -28,7 +30,7 @@ const Login = () => {
 
             }
             
-            axsiosPublic.post('/users',userInfo)
+            axiosSecure.post('/users',userInfo)
             .then(res =>{
                 console.log(res.data);
                 navigate(from, { replace: true });
@@ -55,7 +57,7 @@ const Login = () => {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: "Your work has been saved",
+                    title: "successfully login",
                     showConfirmButton: false,
                     timer: 1500
                 });

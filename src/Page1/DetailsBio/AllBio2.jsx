@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../Providers.jsx/AuthProvider';
-import Swal from 'sweetalert2';
-import axios from 'axios';
-import useDetails from '../../hook/useDetails';
+import { Link} from 'react-router-dom';
+
+
 
 const AllBio = ({ Bios }) => {
     const { Biodata_name, Biodata_type, Profile_img, Division, Age, Occupation, Height, Date, Weight, Race, Fname, Mname, PDivision, Partner_age, Partner_height, Partner_weight, MNumber, email, _id,BioId } = Bios;
     console.log(Bios)
+
+   
     
 
 

@@ -8,7 +8,7 @@ const useCart = () => {
 
         queryKey: ['habijabipayment'],
         queryFn: async () => {
-            const res = await axiosSecure.get('getmoney');
+            const res = await axiosSecure.get('datas');
             return res.data;
         }
 

@@ -44,7 +44,7 @@ const PresentDivision = [
     { value: 'Rangpur', label: 'Rangpur' },
     { value: 'Barisal', label: 'Barisal' },
     { value: 'Khulna', label: 'Khulna' }, 
-    { value: 'Sylhet]', label: 'Sylhet]' },
+    { value: 'Sylhet', label: 'Sylhet' },
     { value: 'Maymansign', label: 'Maymansign' }, 
 
 
@@ -55,7 +55,7 @@ const PermanentDivision = [
     { value: 'Rangpur', label: 'Rangpur' },
     { value: 'Barisal', label: 'Barisal' },
     { value: 'Khulna', label: 'Khulna' },
-    { value: 'Sylhet]', label: 'Sylhet]' },
+    { value: 'Sylhet', label: 'Sylhet' },
     { value: 'Maymansign', label: 'Maymansign' },
 
 
@@ -110,13 +110,15 @@ const EditBio = () => {
         const Partner_weight = form.Partner_weight.value;
         const email = user?.email;
         const MNumber= form.MNumber.value;
-        const BioId = form.BioId.value;
-       
+        const BioId = form.BioId.value; 
+        // const addfee = form.addfee.value;
 
 
  
         const newdata = {
-            Biodata_name, Biodata_type, Profile_img, Division, Age, Occupation, Height, Date, Weight, Race, Fname, Mname, PDivision, Partner_age, Partner_height, Partner_weight, MNumber, email, BioId
+            Biodata_name, Biodata_type, Profile_img, Division, Age, Occupation, Height, Date, Weight, Race, Fname, Mname, PDivision, Partner_age, Partner_height, Partner_weight, MNumber, email, BioId 
+
+            // addfee: parseInt(addfee)
         }
 
         console.log(newdata);
@@ -462,22 +464,40 @@ const EditBio = () => {
                                 />
                             </div>
                         </div>
-                        <div className='w-1/2'>
-                            <label
-                                htmlFor="password"
-                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >
-                                Bio Id
-                            </label>
-                            <input
-                                type="number"
-                                name="BioId"
-                                id="Bioid "
-                                placeholder="BioId" 
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                required
-                            />
-                        </div>
+                       <div className='flex gap-3 mt-2'>
+                            <div className='w-1/2'>
+                                <label
+                                    htmlFor="password"
+                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >
+                                    Bio Id
+                                </label>
+                                <input
+                                    type="number"
+                                    name="BioId"
+                                    id="Bioid "
+                                    placeholder="BioId"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    required
+                                />
+                            </div>
+                            {/* <div className='w-1/2'>
+                                <label
+                                    htmlFor="password"
+                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >
+                                    Add Fee
+                                </label>
+                                <input
+                                    type="number"
+                                    name="addfee"
+                                    id="add fee "
+                                    placeholder="Amount"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    required
+                                />
+                            </div> */}
+                       </div>
 
                     </div>
 

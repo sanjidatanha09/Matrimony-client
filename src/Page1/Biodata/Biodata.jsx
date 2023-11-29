@@ -1,4 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import { Pagination, Navigation } from 'swiper/modules';
 import { Link, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -26,28 +33,25 @@ const Biodata = () => {
   
 
     const [tab, setTab] = useState(0);
+    console.log(tab)
 
     const Data = useLoaderData();
-    const [currentPage, setCurrentPage] = useState(0);
-    const rows = Data.slice(currentPage * itemsPerPages,currentPage +1 *itemsPerPages);
-
-
-
-    const handlePageChange = (pageNumber) =>{
-        setCurrentPage(pageNumber * itemsPerPages, currentPage+1 *itemsPerPages);
-    };
     
 
- 
+    // const [data,setData] = useState([]);
+    // useEffect(() =>{
+    //     const pagination =async ()=>{
+    //         const res = await fetch('https://assignment12-server-alpha.vercel.app/datas')
+    //         const data = res.json()
+    //         setData(data)
 
-   
+    //     }
+    //     pagination()
+    // },[])
 
-   
-
-    
-    
 
     const [bioDatas, setBiodatas] = useState(Data); 
+    console.log(bioDatas)
    
     const Dhaka = Data.filter(tabbs => tabbs.Division === 'Dhaka')
     const Chittagong = Data.filter(tabbs => tabbs.Division === 'Chittagong')
@@ -167,23 +171,130 @@ const Biodata = () => {
 
             <div className=' pl-5 border-l-2 mt-5'>
                 <h2 className='text-xl font-bold text-gray-500 text-center mb-5'>Biodata :{bioDatas.length}</h2>
-                <div className=' mx-auto grid lg:grid-cols-3'>
-                    {
-                        bioDatas.map(Bios => <AllBio2
-                            key={Bios.Biodata_id}
-                            Bios={Bios}
+                
 
-                        ></AllBio2>)
+                <div>
+                    <Swiper
+                        pagination={{
+                            type: 'fraction',
+                        }}
+                        navigation={true}
+                        modules={[Pagination, Navigation]}
+                        className="mySwiper w-full lg:w-[900px] mx-auto"
+                    >
 
-                        
-                    }
-                   
 
-                    
+                       <div>
+                            {
+                                bioDatas.map(review => <SwiperSlide key={review._id}>
 
+                                    <div className="max-w-sm mx-auto mb-5 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                        <div className='flex m-5 items-center justify-between'>
+                                            <div>
+                                                <h1 className='text-center font-bold text-xl text-gray-500'>{review.BioId}</h1>
+                                                <h1 className='font-bold text-2xl text-gray-500'>{review.Biodata_name}</h1>
+                                            </div>
+                                            <a href="#">
+                                                <img className="rounded-lg h-[100px] w-[120px]" src={review.Profile_img} alt="" />
+                                            </a>
+
+
+                                        </div>
+                                        <hr className='' />
+                                        <div className="p-5  ">
+
+
+                                            <h1 className='font-bold text-gray-700 text-sm'>Gender: {review.Biodata_type}</h1>
+                                            <h1 className='font-bold text-gray-700 text-sm'>Date of Birth: {review.Date}</h1>
+                                            <h1 className='font-bold text-gray-700 text-sm'>Height: {review.Height}</h1>
+                                            <h1 className='font-bold text-gray-700 text-sm'>Weight: {review.Weight}</h1>
+                                            <h1 className='font-bold text-gray-700 text-sm'>Age: {review.Age}</h1>
+                                            <p className='font-bold text-gray-700 text-sm'>Occupation:{review.Occupation}</p>
+                                            <p className='font-bold text-gray-700 text-sm'>Race:{review.Race}</p>
+                                            <p className='font-bold text-gray-700 text-sm'>Fathers Name:{review.Fname}</p>
+                                            <p className='font-bold text-gray-700 text-sm'>Mothers  Name:{review.Mname}</p>
+
+
+                                            <h1 className='font-bold text-gray-700 text-sm'>Permanent Division : {review.Division}</h1>
+
+
+                                            <p className='font-bold text-gray-700 text-sm'>Present Division: {review.PDivision}</p>
+                                            <p className='font-bold text-gray-700 text-sm'>Expected Partner Age: {review.Partner_age}</p>
+                                            <p className='font-bold text-gray-700 text-sm'>Expected Partner Height: {review.Partner_height}</p>
+                                            <p className='font-bold text-gray-700 text-sm'>Expected Partner Weight: {review.Partner_weight}</p>
+                                            <p className='font-bold text-gray-700 text-sm'>Contact Email: {review.email}</p>
+                                            <p className='font-bold text-gray-700 text-sm'>Mobile Number: {review.MNumber}</p>
+
+                                            <div>
+                                                <Link to='/detailsBio'>
+                                                    <button
+
+
+
+
+
+                                                        className="mt-5 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#66451c] rounded-lg hover:bg-[#917757] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                                    >
+                                                        Premium Profile
+                                                        <svg
+                                                            className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                                                            aria-hidden="true"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            fill="none"
+                                                            viewBox="0 0 14 10"
+                                                        >
+                                                            <path
+                                                                stroke="currentColor"
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                strokeWidth={2}
+                                                                d="M1 5h12m0 0L9 1m4 4L9 9"
+                                                            />
+                                                        </svg>
+                                                    </button>
+                                                </Link>
+
+                                                <button
+
+
+
+
+
+                                                    className="mt-5 ml-5 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#66451c] rounded-lg hover:bg-[#917757] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                                >
+                                                    Edit Profile
+                                                    <svg
+                                                        className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                                                        aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        fill="none"
+                                                        viewBox="0 0 14 10"
+                                                    >
+                                                        <path
+                                                            stroke="currentColor"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth={2}
+                                                            d="M1 5h12m0 0L9 1m4 4L9 9"
+                                                        />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                </SwiperSlide>)
+                            }
+
+                       </div>
+
+                    </Swiper>
                 </div>
             </div>
-
+           
             
            
            
