@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../Providers.jsx/AuthProvider';
 import Swal from 'sweetalert2';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FaBeer, FaRegEyeSlash, FaEye } from 'react-icons/fa';
+
 import { FaGithub, FaGofore } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import useAxiosPublic from '../hook/useAxiosPublic';

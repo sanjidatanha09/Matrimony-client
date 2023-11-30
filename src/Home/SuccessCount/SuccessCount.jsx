@@ -25,7 +25,7 @@ const SuccessCount = () => {
                 <h1 className='text-center font-bold text-3xl text-[#8b5c22]'>Success Counter</h1>
             </div>
 
-            <div className=' lg:flex gap-4 justify-center items-center'>
+            <div className='flex flex-col md:flex-row md:gap-4 lg:flex-row lg:gap-4 justify-center items-center'>
 
 
                

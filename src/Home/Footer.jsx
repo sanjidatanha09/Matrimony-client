@@ -5,29 +5,29 @@ const Footer = () => {
         <div className="mt-10">
             <footer className="bg-white dark:bg-gray-900 ">
                 <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-                    <div className="md:flex md:justify-between items-center">
+                    <div className="flex flex-col md:flex-row justify-between items-center">
                         <div className="mb-6 md:mb-0 pr-3">
-                            <a href="https://flowbite.com/" className="flex items-center">
+                            <div  className="flex items-center justify-center md:justify-start">
                                 <img
                                     src="https://i.ibb.co/JyG2nXg/wp11202266.jpg"
                                     className="h-8 me-3 rounded-full"
-                                    alt="FlowBite Logo"
+                                    
                                 />
-                                <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white uppercase text-gray-700">
-                                    Wedding matrimony
+                                <span className="self-center lg:text-2xl font-semibold whitespace-nowrap dark:text-white uppercase text-gray-700">
+                                    Wedding <span className="text-[#66451c]">matrimony</span> 
                                 </span>
-                            </a>
+                            </div>
                             <div className="pt-3">
-                                <h1 className="text-gray-500 dark:text-gray-400 font-medium">Company name site- Trusted by over thousands of boys & girls for successfull marraige</h1>
+                                <h1 className="text-gray-500 dark:text-gray-400 lg:font-medium text-center md:text-left">Company name site- Trusted by over thousands of boys & girls for successfull marraige</h1>
                             </div>
 
                             
                         </div>
                     
                         
-                        <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-                            <div className="flex-col justify-center items-center border-l pl-4">
-                                <h2 className="mb-6 text-sm font-semibold  uppercase dark:text-white text-gray-700">
+                        <div className="  grid grid-cols-1 md:grid-cols-3  gap-8 sm:gap-6 sm:grid-cols-3">
+                            <div className="flex-col justify-center items-center md:border-l md:pl-4 w-[50%] md:w-full mx-auto">
+                                <h2 className=" text-left md:mb-6 text-sm font-semibold  uppercase dark:text-white text-gray-700">
                                     Get in touch
                                 </h2>
                                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
@@ -48,14 +48,14 @@ const Footer = () => {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="flex-col justify-center items-center border-x pl-10 ">
-                                <h2 className="mb-6 text-sm font-semibold text-gray-700 dark:text-white uppercase">
+                            <div className="flex-col justify-center items-center md:border-x md:pl-10 w-[50%] md:w-full mx-auto">
+                                <h2 className="md:mb-6 text-sm font-semibold text-gray-700 dark:text-white uppercase">
                                     Help & support
                                 </h2>
-                                <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                                    <li className="mb-4">
+                                <ul className="text-gray-500 dark:text-gray-400 font-medium ">
+                                    <li className="">
                                         <a
-                                            href="https://github.com/themesberg/flowbite"
+                                            
                                             className="hover:underline "
                                         >
                                            About Company
@@ -87,12 +87,12 @@ const Footer = () => {
                                     </li>
                                 </ul>
                             </div>
-                            <div>
-                                <h2 className="mb-6 text-sm font-semibold text-gray-700 uppercase dark:text-white">
+                            <div className="w-[50%] md:w-full mx-auto ">
+                                <h2 className="md:mb-6 text-sm font-semibold text-gray-700 uppercase dark:text-white text-left">
                                     Legal
                                 </h2>
                                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                                    <li className="mb-4">
+                                    <li className="">
                                         <a href="#" className="hover:underline">
                                             Privacy Policy
                                         </a>

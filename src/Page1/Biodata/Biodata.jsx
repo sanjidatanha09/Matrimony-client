@@ -186,12 +186,12 @@ const Biodata = () => {
 
                        <div>
                             {
-                                bioDatas.map(review => <SwiperSlide key={review._id}>
+                                bioDatas.map((review,index) => <SwiperSlide key={review._id}>
 
                                     <div className="max-w-sm mx-auto mb-5 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                         <div className='flex m-5 items-center justify-between'>
                                             <div>
-                                                <h1 className='text-center font-bold text-xl text-gray-500'>{review.BioId}</h1>
+                                                <h1 className='text-center font-bold text-xl text-gray-500'>{index+1}</h1>
                                                 <h1 className='font-bold text-2xl text-gray-500'>{review.Biodata_name}</h1>
                                             </div>
                                             <a href="#">

@@ -7,16 +7,19 @@ import { FaBeer, FaRegEyeSlash, FaEye } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../Providers.jsx/AuthProvider';
-import { Result } from 'postcss';
 import useAxiosPublic from '../hook/useAxiosPublic';
+import useAxiosSecure from '../hook/useAxiosSecure';
 
 
 
 
 const Registration = () => {
     const axsiosPublic = useAxiosPublic()
+    const axiosSecure= useAxiosSecure()
+    const navigate = useNavigate();
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+   
     const from = location.state?.from?.pathname || '/'
 
     const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -30,18 +33,9 @@ const Registration = () => {
                 updateUserProfile(data.displayName, data.photoURL)
                     .then(() => {
                         // creats user entry in the database
-
-
+                        
                         console.log('user profile update')
-                        reset()
-                        // Swal.fire({
-                        //     title: "Good job!",
-                        //     text: "You clicked the button!",
-                        //     icon: "success"
-                        // });
-
-
-
+                        reset();           
                     })
                     .catch(error => console.log(error))
 
@@ -50,8 +44,9 @@ const Registration = () => {
                     email: data.email
 
                 }
-                axsiosPublic.post('/users', userInfo)
+                axiosSecure.post('/users', userInfo)
                     .then(res => {
+                        navigate(from, { replace: true });
                         if (res.data.insertedId) {
                             console.log('user added to the database')
                             reset();
@@ -64,6 +59,7 @@ const Registration = () => {
                             navigate(from, { replace: true });
 
                         }
+                        
                     })
 
             })
@@ -73,76 +69,7 @@ const Registration = () => {
 
 
 
-    // const handleRegistration = e => {
-    //     e.preventDefault();
-    //     console.log(e.currentTarget);
-    //     const form = new FormData(e.currentTarget);
-    //     const displayName = form.get('displayName')
-    //     const photoURL = form.get('photoURL')
-    //     const email =form.get('email')
-    //     const password = form.get('password')
-    //     console.log(displayName, photoURL,email, password);
 
-    //     //reset error
-    //     setRegistererror('');
-
-
-    //     if (password.length < 6) {
-    //         setRegistererror('password is less than 6 characters');
-    //         return;
-    //     }
-
-    //     else if (!/[A-Z]/.test(password)) {
-    //         setRegistererror('shoult have atleast one capital letter');
-    //         return;
-    //     }
-    //     else if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password)) {
-    //         setRegistererror('please use spcecial character');
-    //         return;
-    //     }
-
-
-
-
-    //     //create user
-    //     createUser(email, password)
-    //         .then(result => {
-    //             console.log(result.user);
-    //             //new user has been created
-
-    //             const createAt = result.user?.metadata?.creationTime;
-
-    //             const user = { email, createAt: createAt};
-    //             navigate(location?.state ? location?.state : '/')
-
-    //             fetch('https://assignment-11-server-smoky-mu.vercel.app/user', {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     'content-type': 'application/json'
-    //                 },
-    //                 body: JSON.stringify(user)
-    //             })
-    //                 .then(res => res.json())
-    //                 .then(data => {
-    //                     if (data.insertedId) {
-    //                         console.log('user added success');
-    //                         Swal.fire({
-    //                             title: 'Success!',
-    //                             text: 'user added successfully',
-    //                             icon: 'success',
-    //                             confirmButtonText: 'Cool'
-    //                         })
-
-    //                     }
-    //                 })
-    //         })
-    //         .catch(error => {
-    //             console.error(error)
-    //             toast(error.message);
-
-    //         })
-
-    // }
 
     return (
         <div className='my-16 '>

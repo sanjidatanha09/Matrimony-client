@@ -21,7 +21,6 @@ import Registration from './Login/Registration';
 import About from './Page1/About&contact/About';
 
 import Contact from './Page1/About&contact/Contact';
-import PrivateRoute from './Providers.jsx/PrivateRoute';
 import Dashborad from './Dashboard/Dashborad';
 
 import ViewData from './Dashboard/ViewData';
@@ -37,6 +36,9 @@ import StoryView from './Dashboard/StoryView/StoryView';
 import StoryView2 from './Dashboard/StoryView/StoryView2';
 import MycontactRequ from './Dashboard/MyContactRequ/MycontactRequ';
 import AdminHome from './Dashboard/Adminhome/AdminHome';
+import PrivateRoute from './Providers.jsx/PrivateRoute';
+
+
 
 
 const queryClient = new QueryClient();
@@ -51,14 +53,16 @@ const router = createBrowserRouter([
         path: '/',
         element: <Home></Home>,
       },
+
+    
       {
         path: '/biodata',
-        element: <Biodata></Biodata>,
+        element: <PrivateRoute><Biodata></Biodata></PrivateRoute>,
         loader: () => fetch('https://assignment12-server-alpha.vercel.app/datas')
       },
       {
         path: '/detailsBio',
-        element: <DetailsBio></DetailsBio>,
+        element: <PrivateRoute><DetailsBio></DetailsBio></PrivateRoute>,
         loader: () => fetch('https://assignment12-server-alpha.vercel.app/datas')
       }
       ,

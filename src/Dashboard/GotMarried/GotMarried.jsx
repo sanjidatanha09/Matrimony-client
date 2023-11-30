@@ -38,7 +38,7 @@ const GotMarried = () => {
                 if (data.insertedId) {
                     Swal.fire({
                         title: 'Success!',
-                        text: 'BioData Added Successfully',
+                        text: 'Story review Successfully Added',
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     })
